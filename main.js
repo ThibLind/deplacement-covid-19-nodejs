@@ -50,7 +50,7 @@ var mots_cle = [
     valeur:null}, 
   {
     args:"--lieu-naissance=",
-    prop:"lieunaissance",
+    prop:"placeofbirth",
     valeur:null}, 
   {
     args:"--adresse=",
@@ -62,7 +62,7 @@ var mots_cle = [
     valeur:null}, 
   {
     args:"--ville=",
-    prop:"town",
+    prop:"city",
     valeur:null}, 
   {
     args:"--date=",
@@ -75,7 +75,7 @@ var mots_cle = [
   {
     args:"--raison=",
     prop:"reasons",
-    valeur:"sport"},
+    valeur:"sport_animaux"},
   {
     args:"--date-release=",
     prop:"creationDate",
