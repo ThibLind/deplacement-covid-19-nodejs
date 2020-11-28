@@ -15,15 +15,15 @@ function generateQR (text) {
 }
 
 const ys = {
-  travail: 578,
-  achats: 533,
-  sante: 477,
-  famille: 435,
-  handicap: 396,
-  sport_animaux: 358,
-  convocation: 295,
-  missions: 255,
-  enfants: 211,
+  travail: 550,
+  achats: 480,
+  sante: 432,
+  famille: 408,
+  handicap: 372,
+  sport_animaux: 347,
+  convocation: 275,
+  missions: 250,
+  enfants: 227,
 }
 
 async function generatePdf (profile, pdfBase) {
@@ -50,7 +50,7 @@ async function generatePdf (profile, pdfBase) {
     `Naissance: ${birthday} a ${placeofbirth}`,
     `Adresse: ${address} ${zipcode} ${city}`,
     `Sortie: ${datesortie} a ${heuresortie}`,
-    `Motifs: ${reasons}`,
+    `Motifs: ${reasons};`,
   ].join(';\n ')
 
   const existingPdfBytes = fs.readFileSync(pdfBase);
@@ -80,22 +80,22 @@ async function generatePdf (profile, pdfBase) {
     page1.drawText(text, { x, y, size, font })
   }
 
-  drawText(`${firstname} ${lastname}`, 119, 696)
-  drawText(birthday, 119, 674)
-  drawText(placeofbirth, 297, 674)
-  drawText(`${address} ${zipcode} ${city}`, 133, 652)
-  
+  drawText(`${firstname} ${lastname}`, 93, 703)
+  drawText(birthday, 90, 684)
+  drawText(placeofbirth, 213, 684)
+  drawText(`${address} ${zipcode} ${city}`, 103, 665)
+
   reasons
     .split(', ')
     .forEach(reason => {
-      drawText('x', 78, ys[reason], 18)
+      drawText('x', 47, ys[reason], 15)
     })
 
   let locationSize = getIdealFontSize(font, profile.city, 83, 7, 11)
 
-  drawText(profile.city, 105, 177, locationSize)
-  drawText(`${profile.datesortie}`, 91, 153, 11)
-  drawText(`${profile.heuresortie}`, 264, 153, 11)
+  drawText(profile.city, 81, 77, locationSize)
+  drawText(`${profile.datesortie}`, 62, 58, 11)
+  drawText(`${profile.heuresortie}`, 227, 58, 11)
 
   const generatedQR = await generateQR(data)
 
@@ -103,7 +103,7 @@ async function generatePdf (profile, pdfBase) {
 
   page1.drawImage(qrImage, {
     x: page1.getWidth() - 156,
-    y: 100,
+    y: 25,
     width: 92,
     height: 92,
   })
